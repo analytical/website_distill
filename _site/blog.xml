@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:media="http://search.yahoo.com/mrss/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:dc="http://purl.org/dc/elements/1.1/" version="2.0">
+  <channel>
+    <title>Carlos Gómez</title>
+    <link>https://www.analytical.cl</link>
+    <atom:link href="https://www.analytical.cl/blog.xml" rel="self" type="application/rss+xml"/>
+    <description>Analytical
+</description>
+    <generator>Distill</generator>
+    <lastBuildDate>Fri, 05 Nov 2021 00:00:00 +0000</lastBuildDate>
+    <item>
+      <title>Probando probando</title>
+      <dc:creator>Nora Jones</dc:creator>
+      <link>https://www.analytical.cl/posts/2021-11-05-probando-probano</link>
+      <description>A short description of the post.</description>
+      <guid>https://www.analytical.cl/posts/2021-11-05-probando-probano</guid>
+      <pubDate>Fri, 05 Nov 2021 00:00:00 +0000</pubDate>
+      <media:content url="https://www.analytical.cl/posts/2021-11-05-probando-probano/probando-probando_files/figure-html5/unnamed-chunk-1-1.png" medium="image" type="image/png" width="1248" height="768"/>
+    </item>
+    <item>
+      <title>Welcome to Analytical</title>
+      <dc:creator>Nora Jones</dc:creator>
+      <link>https://www.analytical.cl/posts/welcome</link>
+      <description>Welcome to our new blog, Analytical. We hope you enjoy 
+reading what we have to say!</description>
+      <guid>https://www.analytical.cl/posts/welcome</guid>
+      <pubDate>Fri, 05 Nov 2021 00:00:00 +0000</pubDate>
+    </item>
+  </channel>
+</rss>

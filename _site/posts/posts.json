@@ -1,0 +1,38 @@
+[
+  {
+    "path": "posts/2021-11-05-probando-probano/",
+    "title": "Probando probando",
+    "description": "A short description of the post.",
+    "author": [
+      {
+        "name": "Nora Jones",
+        "url": "https://example.com/norajones"
+      }
+    ],
+    "date": "2021-11-05",
+    "categories": [],
+    "contents": "\r\nDistill is a publication format for scientific and technical writing, native to the web.\r\nLearn more about using Distill at https://rstudio.github.io/distill.\r\n\\[y = \\beta x\\]\r\n\r\n\r\n\r\n\r\n\r\n\r\n",
+    "preview": "posts/2021-11-05-probando-probano/probando-probando_files/figure-html5/unnamed-chunk-1-1.png",
+    "last_modified": "2021-11-05T19:20:02-03:00",
+    "input_file": {},
+    "preview_width": 1248,
+    "preview_height": 768
+  },
+  {
+    "path": "posts/welcome/",
+    "title": "Welcome to Analytical",
+    "description": "Welcome to our new blog, Analytical. We hope you enjoy \nreading what we have to say!",
+    "author": [
+      {
+        "name": "Nora Jones",
+        "url": "https://example.com/norajones"
+      }
+    ],
+    "date": "2021-11-05",
+    "categories": [],
+    "contents": "\r\n\r\n\r\n\r\n",
+    "preview": {},
+    "last_modified": "2021-11-05T18:33:04-03:00",
+    "input_file": {}
+  }
+]

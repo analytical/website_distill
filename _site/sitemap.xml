@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" version="1.0">
+  <url>
+    <loc>https://www.analytical.cl/about.html</loc>
+    <lastmod>2021-11-05T18:32:53-03:00</lastmod>
+  </url>
+  <url>
+    <loc>https://www.analytical.cl/blog.html</loc>
+    <lastmod>2021-11-05T19:23:37-03:00</lastmod>
+  </url>
+  <url>
+    <loc>https://www.analytical.cl/</loc>
+    <lastmod>2021-11-05T19:33:09-03:00</lastmod>
+  </url>
+  <url>
+    <loc>https://www.analytical.cl/posts/2021-11-05-probando-probano/</loc>
+    <lastmod>2021-11-05T19:20:02-03:00</lastmod>
+  </url>
+  <url>
+    <loc>https://www.analytical.cl/posts/welcome/</loc>
+    <lastmod>2021-11-05T18:33:04-03:00</lastmod>
+  </url>
+</urlset>
