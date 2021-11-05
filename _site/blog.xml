@@ -26,5 +26,14 @@ reading what we have to say!</description>
       <guid>https://www.analytical.cl/posts/welcome</guid>
       <pubDate>Fri, 05 Nov 2021 00:00:00 +0000</pubDate>
     </item>
+    <item>
+      <title>¿Cómo calcular la incertidumbre de una curva de calibración?</title>
+      <dc:creator>Nora Jones</dc:creator>
+      <link>https://www.analytical.cl/posts/2021-11-05-como-calcular-la-incertidumbre-de-una-curva-de-calibracion</link>
+      <description>A short description of the post.</description>
+      <guid>https://www.analytical.cl/posts/2021-11-05-como-calcular-la-incertidumbre-de-una-curva-de-calibracion</guid>
+      <pubDate>Fri, 05 Nov 2021 00:00:00 +0000</pubDate>
+      <media:content url="https://www.analytical.cl/posts/2021-11-05-como-calcular-la-incertidumbre-de-una-curva-de-calibracion/como-calcular-la-incertidumbre-de-una-curva-de-calibracion_files/figure-html5/banda-1.png" medium="image" type="image/png" width="1248" height="768"/>
+    </item>
   </channel>
 </rss>

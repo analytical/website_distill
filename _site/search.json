@@ -6,21 +6,21 @@
       "description": "Some additional details about the blog",
       "author": [],
       "contents": "\r\n\r\n\r\n\r\n",
-      "last_modified": "2021-11-05T19:33:13-03:00"
+      "last_modified": "2021-11-05T19:44:08-03:00"
     },
     {
       "path": "blog.html",
       "title": "Blog",
       "author": [],
-      "contents": "\r\n\r\n\r\n\r\n",
-      "last_modified": "2021-11-05T19:33:14-03:00"
+      "contents": "\r\nSi tuviera un título\r\n\r\n\r\n\r\n",
+      "last_modified": "2021-11-05T19:44:09-03:00"
     },
     {
       "path": "index.html",
       "title": "Carlos Gómez",
       "author": [],
       "contents": "\r\n\r\n          \r\n          \r\n          Carlos Gómez\r\n          \r\n          \r\n          Home\r\n          About\r\n          Blog\r\n          ☰\r\n          \r\n          \r\n      \r\n        \r\n          \r\n            Carlos Gómez\r\n          \r\n          \r\n            \r\n              Soy Metrólogo Químico y aplico métodos estadísticos modernos en Química Analítica\r\n            \r\n            \r\n              Soy Metrólogo Químico y aplico métodos estadísticos modernos en Química Analítica\r\n            \r\n          \r\n\r\n          \r\n            \r\n              \r\n                  \r\n                    \r\n                       LinkedIn\r\n                    \r\n                  \r\n                \r\n                                \r\n                  \r\n                    \r\n                       Twitter\r\n                    \r\n                  \r\n                \r\n                                \r\n                  \r\n                    \r\n                       GitHub\r\n                    \r\n                  \r\n                \r\n                                \r\n                  \r\n                    \r\n                       Email\r\n                    \r\n                  \r\n                \r\n                              \r\n          \r\n\r\n          \r\n            \r\n              \r\n                                \r\n                  \r\n                     LinkedIn\r\n                  \r\n                \r\n                                \r\n                  \r\n                     Twitter\r\n                  \r\n                \r\n                                \r\n                  \r\n                     GitHub\r\n                  \r\n                \r\n                                \r\n                  \r\n                     Email\r\n                  \r\n                \r\n                              \r\n            \r\n          \r\n        \r\n      \r\n    \r\n\r\n    \r\n    \r\n    ",
-      "last_modified": "2021-11-05T19:33:14-03:00"
+      "last_modified": "2021-11-05T19:44:10-03:00"
     }
   ],
   "collections": ["posts/posts.json"]
