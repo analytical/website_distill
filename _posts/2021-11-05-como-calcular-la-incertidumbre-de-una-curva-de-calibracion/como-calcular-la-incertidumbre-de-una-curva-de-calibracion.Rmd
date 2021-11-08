@@ -5,10 +5,11 @@ description: |
 author:
   - name: Nora Jones
     url: https://example.com/norajones
-date: 2021-11-05
+date: 2017-08-12
 output:
   distill::distill_article:
     self_contained: false
+    highlight: tango
 ---
 
 Ok, este es el segundo post pero advierto que aún está en rodaje... esto del
@@ -24,6 +25,29 @@ esta incertidumbre
 sólo da cuenta del error aleatorio del instrumento y no incopora la
 incertidumbre de los calibrantes, al menos cuando se utiliza el modelo de 
 calibración clásico:
+
+
+<style>
+p.comment {
+background-color: #F41710;
+padding: 10px;
+border: 1px solid black;
+margin-left: 0px;
+border-radius: 5px;
+font-style: italic;
+color: white;
+}
+
+</style>
+
+<p class="comment">
+  <strong>¡Importante!</strong> Si los datos son
+</p>
+
+
+<div class="alert alert-info">
+  <strong>¡Importante!</strong> Si los datos son
+</div>
 
 \begin{equation}
   y = \beta_{0} + \beta_{1} x + \epsilon
@@ -69,7 +93,7 @@ Vamos viendo dijo el ciego:
 
 Esta incertidumbre se puede observar en la figura \@ref(fig:banda), la
 cual fue obtenida mediante simulación en lenguaje `R`:
-  
+
 ```{r banda, fig.cap = 'Incertidumbre de calibracion'}
 
 set.seed(123)
@@ -83,4 +107,164 @@ ggplot(d, aes(x = x, y = y)) +
   geom_smooth(method = 'lm') 
 
 ```
+
+¿Dónde se obtiene la menor incertidumbre de calibración? ... ¡Correcto!
+
+> En el centro de la curva se minimiza la incertidumbre de calibración
+
+Si obervamos la ecuación \@ref(eq:ux0) podemos minimizar $u(x_{0})$:
+
+1. Aumentando $n$ el número de calibrantes. 
+2. Aumentando $m_{0}$
+3. Diseñando la curva de calibración de modo que $x_{0} = \bar{x}$
+4. Aunque no tan "evidente", maximizando $\sum_{i}^{n} (x_{i} - \overline{x})^2$,
+es decir, utilizando todo el rango lineal (Nota mental: otro post)
+
+# Aplicación a un caso "real"
+
+La tabla \@ref(tab:tabla) muestra los datos de una curva de calibración para la determinación de cobre en mineral por AAS, la figura \@ref(fig:cal) describe
+el gráfico de calibración:
+
+```{r cal, echo = F, fig.cap = 'Curva de calibración'}
+
+set.seed(123)
+b0 <- 0
+b1 <- 0.200/5 # para 5 ppm se obtienen 200 UA 
+x <- 1:10
+y <- b0 + b1*x + rnorm(length(x), 0, 0.01)
+d <- data.frame(x, y)
+
+
+ggplot(d, aes(x = x, y = y)) +
+  geom_point(col = 'red') +
+  geom_smooth(method = 'lm') +
+  xlab('Cu [ppm]') +
+  ylab('UA')
+
+```
+
+
+<aside>
+```{r tabla, echo = F, warning = F, message=F}
+library(magrittr)
+library(kableExtra)
+options(knitr.table.format = "html") 
+
+knitr::kable(d,
+             caption = 'Curva de Calibración Cu',
+             booktabs = T,
+             digits = 4,
+             align = 'c',
+             col.names = c('Cu [ppm]', 'UA')) %>% 
+  kable_styling(full_width = F, position = 'left')
+
+
+```
+</aside>
+
+
+
+
+
+
+Ok, hay varias formas de implementar los cálculos de incertidumbre de 
+calibración de la ecuación \@ref(eq:ux0). Podríamos utilizar Excel para
+obtener cada uno de los términos, pero eso lo ilustraremos en otro post.
+En esta oportunidad utilizaremos el software `R`. Este software posee varias
+librerías o packages especializados en el cálculo de incertidumbre en
+química analítica, por ejemplo: `metRology` y `chemCal`. En este post
+utilizaremos el segundo, pues entrega en forma directa el cálculo de
+la incertidumbre de calibración:
+
+{{% alert warning %}}
+Si no tienes instalado el package `chemCal` utiliza el comando
+`install.packages('chemCal')`. Una vez instalado procede con el siguiente 
+código.{{% /alert %}}
+
+
+```{r ux0, warning=F, message=F, comment = NA}
+
+# Creación del modelo de calibración lineal, al que llamaremos fit.lin 
+# (En otro post se profundizará sobre otros modelos de calibración en R)
+
+fit.lin <- lm(y ~ x, data = d)
+
+# Simular un valor de respuesta de la muestra problema, es decir, y0.
+# Sólo por conveniencia simularemos que y0 = 0.200 UA, es decir, más o menos
+# en el centro de la curva:
+
+y0 <- 0.200
+
+# Cargar la librería chemCal con el comando 'library':
+
+library(chemCal)
+
+# Calcular la concentración de la muestra problema, x0, a partir de su señal
+# instrumental y0, junto con la incertidumbre estándar de calibración u(x0) e
+# incertidumbre expandida U(x0) con un 95% de confianza:
+
+inverse.predict(fit.lin, newdata = y0)
+
+```
+
+
+```{r, echo = F}
+
+ux0 <- inverse.predict(fit.lin, newdata = y0)
+
+```
+
+
+Bien, interpretemos la salida:
+
+- `$Prediction` es la concentración de la muestra problema en [ppm]
+- `$Standard Error` es la incertidumbre estándar de calibración, es
+decir, la que se obtiene de la ecuación \@ref(eq:ux0) expresada,
+obviamente, en las mismas unidades que los calibrantes [ppm].
+- `$Confidence` es la incertidumbre expandida de calibración $U(x0)$, es decir, 
+$U(x0) = k\cdot u(x0)$ donde $k$ es el factor de cobertura con el cual se obtiene
+un intervalo de incertidumbre con cierta confianza (habitualmente 95%). 
+Más de esto en otro post.
+- `$Confidence Limits` es simplemente $x0 \pm U(x0)$, es decir,
+$`r round(ux0$Prediction, 1)` \pm `r round(ux0$Confidence, 1)`$ ppm 
+(ojo con las cifras significativas... ahí va otro post).
+
+Algunas consideraciones importantes:
+
+1. Esta incertidumbre de calibración $u(x0)$ NO incorpora la 
+incertidumbre de los calibrantes, sólo es un reflejo del error aleatorio
+instrumental. Punto. Es decir, asume que los calibrantes no tienen
+incertidumbre... lo cual todos los químicos sabemos que es ¡Farso, farso!
+
+2. Si Ud. requiere incorporar también la incertidumbre de los calibrantes, debe
+utilizar otro modelo lineal de calibración denominado: modelo lineal con error
+en ambos ejes (otro post).
+
+3. Ya que esta incertidumbre sólo refleja el componente aleatorio de la 
+calibración, no están incorporados los errores sistemáticos de la preparación
+de estándares: error en el aforo, no considerar la pureza del 
+reactivo, etc. (Nota mental: otro post... ¿cuántos van?).
+
+4. Si, además, el método analítico incluye pesada de la muestra, digestión o
+extracción, aforo final, factor de dilución, etc. Ud.debe, mediante los
+mandamientos de la guía GUM, combinar todas estas fuentes de incertidumbre
+con la de calibración $u(x0)$.
+
+5. En el fondo, como se asume que los calibrantes no tienen incertidumbre, 
+$u(x0)$ reflejaría el comportamiento aleatorio del instrumento cuando
+se lee la curva "muchas" veces, siempre con los mismos calibrantes. En cada 
+oportunidad, se obtendría una pendiente e intercepto distintos (debido a al 
+error aleatorio $\epsilon$), por lo tanto, también una concentración $x0$ 
+distinta cada vez.
+
+
+{{% alert warning %}}
+Si está interesad@ en estimar la incertidumbre de una calibración no lineal, lo
+discutimos paso a paso en el [siguiente link.](https://www.analytical.cl/post/incertidumbre-de-una-calibracion-no-lineal/)
+{{% /alert %}}
+
+
+Bueno espero que este post, en rodaje áun, haya sido de su agrado. Como siempre, 
+siéntase libre de criticarlo. Nos vemos.
+
 
